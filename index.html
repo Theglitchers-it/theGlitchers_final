@@ -73,6 +73,122 @@
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* ANIMAZIONI DI ENTRATA */
+
+        /* Hero - Scritte da sinistra e destra */
+        @keyframes slideFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Zoom in delicato */
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Slide from bottom */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Fade in semplice */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Stato iniziale elementi */
+        .hero-left {
+            opacity: 0;
+        }
+
+        .hero-right {
+            opacity: 0;
+        }
+
+        .hero-center {
+            opacity: 0;
+        }
+
+        .animate-section {
+            opacity: 0;
+        }
+
+        /* Animazioni attivate */
+        .hero-left.active {
+            animation: slideFromLeft 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-right.active {
+            animation: slideFromRight 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-center.active {
+            animation: zoomIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.4s;
+        }
+
+        .animate-section.in-view {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .animate-section.slide-up {
+            animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .animate-section.zoom-in {
+            animation: zoomIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .animate-section.fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
     </style>
 </head>
 <body class="no-scrollbar">
@@ -90,23 +206,86 @@
     <div class="grainy-bg"></div>
 
     <header class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit">
-        <nav class="bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full flex items-center gap-8">
+        <!-- Desktop Nav: Logo + Links + Contact -->
+        <nav class="hidden md:flex bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full items-center gap-8">
             <div class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
                 <img src="top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
             </div>
-            <div class="hidden md:flex gap-6 text-[13px] font-medium text-gray-300">
+            <div class="flex gap-6 text-[13px] font-medium text-gray-300">
                 <a href="#" class="hover:text-[#CCFF00] transition">Home</a>
                 <a href="#work" class="hover:text-[#CCFF00] transition">Work</a>
+                <a href="#mad-lab" class="hover:text-[#CCFF00] transition">Mad Lab</a>
                 <a href="#instagram" class="hover:text-[#CCFF00] transition">Social</a>
-                <a href="#" class="hover:text-[#CCFF00] transition">Tech</a>
             </div>
-            <button class="bg-white text-black px-6 py-2 rounded-full text-[13px] font-bold hover:bg-[#CCFF00] hover:scale-105 transition-all">
+            <a href="#contact" class="bg-white text-black px-6 py-2 rounded-full text-[13px] font-bold hover:bg-[#CCFF00] hover:scale-105 transition-all">
                 Contact
+            </a>
+        </nav>
+
+        <!-- Mobile Nav: Logo + Hamburger -->
+        <nav class="md:hidden bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
+                <img src="top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
+            </div>
+            <button id="menu-toggle" class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 hover:scale-110 transition-transform">
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line1"></span>
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line2"></span>
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line3"></span>
             </button>
         </nav>
+
+        <!-- Menu a cascata (solo mobile) -->
+        <div id="dropdown-menu" class="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px]">
+            <div class="p-6">
+                <div class="flex flex-col gap-1">
+                    <a href="#" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Home</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#work" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Work</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#mad-lab" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Mad Lab</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#instagram" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Social</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="#contact" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Contact</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <a href="mailto:hello@theglitchers.com" class="block w-full bg-[#CCFF00] text-black px-6 py-3 rounded-full text-center font-bold hover:scale-105 transition-transform">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <div class="fixed bottom-8 left-8 z-[100] flex items-center gap-4 bg-black/60 backdrop-blur-lg border border-white/10 p-3 rounded-full">
+    <!-- Player Musicale Mobile: Solo palla gialla -->
+    <div class="fixed bottom-8 left-8 z-[100] md:hidden">
+        <button id="music-btn-mobile" class="w-12 h-12 bg-[#CCFF00] rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-[0_0_20px_rgba(204,255,0,0.3)]">
+            <div id="eq-container-mobile" class="flex items-end gap-[2px] h-4">
+                <div class="eq-bar w-[3px] bg-black h-full"></div>
+                <div class="eq-bar w-[3px] bg-black h-1/2"></div>
+                <div class="eq-bar w-[3px] bg-black h-3/4"></div>
+            </div>
+            <svg id="play-icon-mobile" class="hidden text-black" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <audio id="bg-music" loop>
+            <source src="Still The Beats.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Player Musicale Desktop: Con info -->
+    <div class="hidden md:flex fixed bottom-8 left-8 z-[100] items-center gap-4 bg-black/60 backdrop-blur-lg border border-white/10 p-3 rounded-full">
         <button id="music-btn" class="w-10 h-10 bg-[#CCFF00] rounded-full flex items-center justify-center group transition-all hover:scale-110">
             <div id="eq-container" class="flex items-end gap-[2px] h-4">
                 <div class="eq-bar w-[3px] bg-black h-full"></div>
@@ -119,41 +298,33 @@
             <p class="text-[9px] uppercase tracking-widest font-black text-[#CCFF00] leading-none mb-1">On Air</p>
             <p class="text-[10px] text-white font-mono opacity-50 leading-none truncate w-24">GLITCH_RADIO_01.MP3</p>
         </div>
-        
-        <audio id="bg-music" loop>
-            <source src="Still The Beats.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
     <main class="relative h-screen flex items-center justify-center px-6 overflow-hidden">
-        <div id="floating-hand" class="absolute bottom-[22%] left-[36%] w-16 h-16 bg-[#CCFF00] rounded-full flex items-center justify-center shadow-[0_0_40px_rgba(204,255,0,0.3)] z-40">
-            <span class="text-xl">⚡</span>
-        </div>
-        <div class="absolute top-[35%] left-[34%] w-2 h-2 bg-[#CCFF00] rounded-full opacity-60"></div>
 
         <div class="relative w-full max-w-[1600px] flex flex-col md:flex-row items-center justify-center">
-            <div class="z-20 text-center md:text-left pointer-events-none">
-                <p class="uppercase tracking-[0.4em] text-[10px] mb-4 text-[#CCFF00] font-bold ml-1">TheGlitchers</p>
-                <h1 class="font-bebas text-[85px] sm:text-[120px] lg:text-[180px] leading-[0.8] tracking-tighter text-white glitch-hover transition-all">
+            <div class="z-20 text-center md:text-left pointer-events-none hero-left">
+                <p class="uppercase tracking-[0.4em] text-[9px] md:text-[10px] mb-2 md:mb-4 text-[#CCFF00] font-bold ml-1">TheGlitchers</p>
+                <h1 class="font-bebas text-[70px] sm:text-[120px] lg:text-[180px] leading-[0.8] tracking-tighter text-white glitch-hover transition-all">
                     CREATIVE
                 </h1>
             </div>
 
-            <div class="relative z-30 my-8 md:my-0 md:mx-10">
-                <div class="w-[200px] h-[280px] md:w-[240px] md:h-[360px] bg-[#1a1a1a] rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
-                    <img id="hero-image" 
-                         src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1740&auto=format&fit=crop" 
-                         alt="Tech Portrait" 
+            <div class="relative z-30 my-7 md:my-0 md:mx-10 hero-center">
+                <div class="w-[180px] h-[250px] md:w-[240px] md:h-[360px] bg-[#1a1a1a] rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
+                    <img id="hero-image"
+                         src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1740&auto=format&fit=crop"
+                         alt="Tech Portrait"
                          class="w-full h-full object-cover scale-110 grayscale brightness-90 contrast-110">
                 </div>
             </div>
 
-            <div class="z-20 text-center md:text-left pointer-events-none">
-                <h1 class="font-bebas text-[85px] sm:text-[120px] lg:text-[185px] leading-[0.8] tracking-tighter text-white glitch-hover transition-all">
+            <div class="z-20 text-center md:text-left pointer-events-none hero-right">
+                <h1 class="font-bebas text-[70px] sm:text-[120px] lg:text-[185px] leading-[0.8] tracking-tighter text-white glitch-hover transition-all">
                     TECH TEAM
                 </h1>
-                <div class="mt-6 md:mt-10 max-w-[210px] mx-auto md:ml-4">
-                    <p class="text-gray-400 text-[13px] leading-relaxed">
+                <div class="mt-4 md:mt-10 max-w-[200px] md:max-w-[210px] mx-auto md:ml-4">
+                    <p class="text-gray-400 text-[12px] md:text-[13px] leading-relaxed">
                         We blend code and aesthetics to create pazzeschi digital products.
                     </p>
                 </div>
@@ -161,7 +332,7 @@
         </div>
     </main>
 
-    <section id="work" class="relative py-24 px-6">
+    <section id="work" class="relative py-24 px-6 animate-section" data-anim="slide-up">
         <div class="max-w-[1400px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
                 <div>
@@ -193,7 +364,7 @@
         </div>
     </section>
 
-    <section id="mad-lab" class="relative py-32 px-6 bg-[#0a0a0a]">
+    <section id="mad-lab" class="relative py-32 px-6 bg-[#0a0a0a] animate-section" data-anim="zoom-in">
         <div class="absolute inset-0 opacity-[0.03] pointer-events-none" 
              style="background-image: linear-gradient(#CCFF00 1px, transparent 1px), linear-gradient(90deg, #CCFF00 1px, transparent 1px); background-size: 50px 50px;">
         </div>
@@ -255,7 +426,7 @@
         </div>
     </section>
 
-    <section id="challenges" class="relative py-32 px-6 bg-[#0d0d0d] overflow-hidden border-y border-[#CCFF00]/10">
+    <section id="challenges" class="relative py-32 px-6 bg-[#0d0d0d] overflow-hidden border-y border-[#CCFF00]/10 animate-section" data-anim="in-view">
         <div class="absolute inset-0 pointer-events-none opacity-[0.03]" 
              style="background: repeating-linear-gradient(0deg, #CCFF00, #CCFF00 1px, transparent 1px, transparent 2px); background-size: 100% 3px;">
         </div>
@@ -338,7 +509,7 @@
         </div>
     </section>
 
-    <section id="instagram" class="relative py-32 overflow-hidden border-t border-white/5">
+    <section id="instagram" class="relative py-32 overflow-hidden border-t border-white/5 animate-section" data-anim="fade-in">
             <div class="max-w-[1400px] mx-auto px-6 mb-20 flex flex-col md:flex-row justify-between items-center gap-8">
                 <h2 class="font-bebas text-7xl md:text-9xl tracking-tighter leading-none text-white">
                     THE <span class="text-[#CCFF00]">GLITCH</span> <br> FEED
@@ -401,7 +572,7 @@
             </div>
     </section>
 
-    <section id="contact" class="relative py-32 px-6 overflow-hidden">
+    <section id="contact" class="relative py-32 px-6 overflow-hidden animate-section" data-anim="slide-up">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#CCFF00]/5 blur-[120px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-[1400px] mx-auto">
@@ -522,15 +693,74 @@
         const cursor = document.getElementById('custom-cursor');
         const crazySections = document.querySelectorAll('#mad-lab, #work');
         const image = document.getElementById('hero-image');
-        const floatingHand = document.getElementById('floating-hand');
         const musicBtn = document.getElementById('music-btn');
+        const musicBtnMobile = document.getElementById('music-btn-mobile');
         const audio = document.getElementById('bg-music');
         const playIcon = document.getElementById('play-icon');
+        const playIconMobile = document.getElementById('play-icon-mobile');
         const eqContainer = document.getElementById('eq-container');
+        const eqContainerMobile = document.getElementById('eq-container-mobile');
         const enterScreen = document.getElementById('enter-screen');
         const startTrigger = document.getElementById('start-trigger');
+        const menuToggle = document.getElementById('menu-toggle');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
 
-        // 2. GESTIONE CURSORE E PARALLASSE (Unificata per performance)
+        // 2. MENU HAMBURGER TOGGLE
+        let isMenuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+
+            if (isMenuOpen) {
+                // Apri menu
+                dropdownMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.add('opacity-100', 'translate-y-0');
+
+                // Trasforma hamburger in X
+                line1.style.transform = 'rotate(45deg) translateY(7px)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'rotate(-45deg) translateY(-7px)';
+            } else {
+                // Chiudi menu
+                dropdownMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.remove('opacity-100', 'translate-y-0');
+
+                // Ripristina hamburger
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            }
+        });
+
+        // Chiudi menu quando clicchi su un link
+        const menuLinks = dropdownMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                dropdownMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.remove('opacity-100', 'translate-y-0');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            });
+        });
+
+        // Chiudi menu cliccando fuori
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                isMenuOpen = false;
+                dropdownMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.remove('opacity-100', 'translate-y-0');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            }
+        });
+
+        // 3. GESTIONE CURSORE E PARALLASSE (Unificata per performance)
         document.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
 
@@ -541,9 +771,8 @@
             // Effetto Parallasse Hero
             const moveX = (clientX - window.innerWidth / 2) * 0.012;
             const moveY = (clientY - window.innerHeight / 2) * 0.012;
-            
+
             if (image) image.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
-            if (floatingHand) floatingHand.style.transform = `translate(${moveX * 2.5}px, ${moveY * 2.5}px)`;
         });
 
         // Visibilità cursore nelle sezioni specifiche
@@ -552,7 +781,7 @@
             section.addEventListener('mouseleave', () => cursor.style.opacity = '0');
         });
 
-        // 3. LOGICA AUDIO: ENTER SCREEN (Con salto al sec 10 e Fade-in)
+        // 4. LOGICA AUDIO: ENTER SCREEN (Con salto al sec 10 e Fade-in)
         startTrigger.addEventListener('click', () => {
             // Imposta il tempo di inizio al decimo secondo
             audio.currentTime = 12;
@@ -568,10 +797,17 @@
                     }
                 }, 100);
 
-                // Attiva UI Audio
-                musicBtn.classList.add('is-playing');
-                eqContainer.classList.remove('hidden');
-                playIcon.classList.add('hidden');
+                // Attiva UI Audio (desktop e mobile)
+                if (musicBtn) {
+                    musicBtn.classList.add('is-playing');
+                    eqContainer.classList.remove('hidden');
+                    playIcon.classList.add('hidden');
+                }
+                if (musicBtnMobile) {
+                    musicBtnMobile.classList.add('is-playing');
+                    eqContainerMobile.classList.remove('hidden');
+                    playIconMobile.classList.add('hidden');
+                }
             }).catch(err => console.log("Errore riproduzione:", err));
 
             // Nasconde l'overlay
@@ -579,21 +815,88 @@
             setTimeout(() => {
                 enterScreen.style.display = 'none';
             }, 1000);
+
+            // ATTIVA ANIMAZIONI HERO
+            setTimeout(() => {
+                document.querySelector('.hero-left')?.classList.add('active');
+                document.querySelector('.hero-right')?.classList.add('active');
+                document.querySelector('.hero-center')?.classList.add('active');
+            }, 1200);
         });
 
-        // 4. LOGICA AUDIO: TOGGLE PLAY/PAUSE (Manuale)
-        musicBtn.addEventListener('click', () => {
-            if (audio.paused) {
-                audio.play();
-                musicBtn.classList.add('is-playing');
-                eqContainer.classList.remove('hidden');
-                playIcon.classList.add('hidden');
+        // 5. LOGICA AUDIO: TOGGLE PLAY/PAUSE (Manuale)
+
+        // Funzione per sincronizzare UI
+        function updateMusicUI(isPlaying) {
+            if (isPlaying) {
+                if (musicBtn) {
+                    musicBtn.classList.add('is-playing');
+                    eqContainer.classList.remove('hidden');
+                    playIcon.classList.add('hidden');
+                }
+                if (musicBtnMobile) {
+                    musicBtnMobile.classList.add('is-playing');
+                    eqContainerMobile.classList.remove('hidden');
+                    playIconMobile.classList.add('hidden');
+                }
             } else {
-                audio.pause();
-                musicBtn.classList.remove('is-playing');
-                eqContainer.classList.add('hidden');
-                playIcon.classList.remove('hidden');
+                if (musicBtn) {
+                    musicBtn.classList.remove('is-playing');
+                    eqContainer.classList.add('hidden');
+                    playIcon.classList.remove('hidden');
+                }
+                if (musicBtnMobile) {
+                    musicBtnMobile.classList.remove('is-playing');
+                    eqContainerMobile.classList.add('hidden');
+                    playIconMobile.classList.remove('hidden');
+                }
             }
+        }
+
+        // Desktop
+        if (musicBtn) {
+            musicBtn.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+                updateMusicUI(!audio.paused);
+            });
+        }
+
+        // Mobile
+        if (musicBtnMobile) {
+            musicBtnMobile.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+                updateMusicUI(!audio.paused);
+            });
+        }
+
+        // 6. INTERSECTION OBSERVER PER ANIMAZIONI SEZIONI
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const animType = entry.target.dataset.anim;
+                    entry.target.classList.add(animType);
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Osserva tutte le sezioni animate
+        document.querySelectorAll('.animate-section').forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
