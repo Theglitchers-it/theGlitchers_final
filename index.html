@@ -39,8 +39,8 @@
             100% { transform: translate(0); }
         }
 
-        #hero-image { transition: transform 0.2s ease-out; }
-        
+        #hero-video { transition: transform 0.2s ease-out; }
+
         /* Marquee Pacman Style */
         @keyframes marquee {
             0% { transform: translateX(0); }
@@ -312,10 +312,14 @@
 
             <div class="relative z-30 my-7 md:my-0 md:mx-10 hero-center">
                 <div class="w-[180px] h-[250px] md:w-[240px] md:h-[360px] bg-[#1a1a1a] rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
-                    <img id="hero-image"
-                         src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1740&auto=format&fit=crop"
-                         alt="Tech Portrait"
+                    <video id="hero-video"
+                         src="video.mp4"
+                         autoplay
+                         muted
+                         loop
+                         playsinline
                          class="w-full h-full object-cover scale-110 grayscale brightness-90 contrast-110">
+                    </video>
                 </div>
             </div>
 
@@ -325,7 +329,7 @@
                 </h1>
                 <div class="mt-4 md:mt-10 max-w-[200px] md:max-w-[210px] mx-auto md:ml-4">
                     <p class="text-gray-400 text-[12px] md:text-[13px] leading-relaxed">
-                        We blend code and aesthetics to create pazzeschi digital products.
+                        Combiniamo codice e estetica per creare prodotti digitali straordinari.
                     </p>
                 </div>
             </div>
@@ -341,10 +345,10 @@
                 </div>
             </div>
 
-            <div class="relative group cursor-pointer w-full aspect-[21/9] md:aspect-[16/7] overflow-hidden rounded-[40px] border border-white/10 bg-[#1a1a1a] shadow-2xl">
+            <div class="relative group cursor-pointer w-full aspect-[4/3] md:aspect-[16/7] overflow-hidden rounded-[40px] border border-white/10 bg-[#1a1a1a] shadow-2xl">
                 
                 <video class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" autoplay muted loop playsinline>
-                    <source src="https://cdn.pixabay.com/video/2020/09/11/49626-459141753_large.mp4" type="video/mp4">
+                    <source src="video.mp4" type="video/mp4">
                 </video>
                 
                 <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
@@ -606,25 +610,36 @@
                 </div>
 
                 <div class="relative">
-                    <div class="bg-white/5 border border-white/10 p-10 md:p-16 rounded-[40px] backdrop-blur-md relative z-10">
-                        <h3 class="font-bebas text-4xl mb-6">START A CONVERSATION</h3>
+                    <div class="bg-white/5 border border-white/10 p-8 md:p-16 rounded-[40px] backdrop-blur-md relative z-10">
+                        <h3 class="font-bebas text-4xl mb-6 text-white">START A CONVERSATION</h3>
                         <p class="text-gray-400 mb-10">Preferisci i social? Siamo ovunque.</p>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <a href="#" class="bg-white text-black p-6 rounded-3xl font-bold flex flex-col justify-between hover:bg-[#CCFF00] transition-all aspect-square sm:aspect-auto group">
-                                <span class="text-xs uppercase tracking-widest opacity-60">Instagram</span>
-                                <div class="flex justify-between items-end mt-8">
-                                    <span class="text-xl">DM US</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="group-hover:rotate-45 transition-transform"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                            
+                            <a href="#" class="bg-white text-black p-6 rounded-3xl font-bold flex flex-col justify-between hover:bg-[#CCFF00] transition-all min-h-[120px] sm:aspect-video group">
+                                <span class="text-[10px] uppercase tracking-widest opacity-60">Instagram</span>
+                                <div class="flex justify-between items-end w-full mt-4">
+                                    <span class="text-xl sm:text-2xl leading-none">DM US</span>
+                                    <div class="flex-shrink-0">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="w-6 h-6 group-hover:rotate-45 transition-transform">
+                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </a>
-                            <a href="#" class="bg-white/10 border border-white/10 p-6 rounded-3xl font-bold flex flex-col justify-between hover:bg-white hover:text-black transition-all aspect-square sm:aspect-auto group">
-                                <span class="text-xs uppercase tracking-widest opacity-60">WhatsApp</span>
-                                <div class="flex justify-between items-end mt-8">
-                                    <span class="text-xl">CHATTIAMO</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="group-hover:rotate-45 transition-transform"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+
+                            <a href="#" class="bg-white/10 border border-white/10 p-6 rounded-3xl font-bold flex flex-col justify-between hover:bg-white hover:text-black transition-all min-h-[120px] sm:aspect-video group text-white">
+                                <span class="text-[10px] uppercase tracking-widest opacity-60">WhatsApp</span>
+                                <div class="flex justify-between items-end w-full mt-4">
+                                    <span class="text-xl sm:text-2xl leading-none">CHATTIAMO</span>
+                                    <div class="flex-shrink-0">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="w-6 h-6 group-hover:rotate-45 transition-transform">
+                                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                        </svg>
+                                    </div>
                                 </div>
                             </a>
+
                         </div>
                     </div>
                     
@@ -684,15 +699,10 @@
             </div>
     </footer>
 
-    <div id="custom-cursor" class="fixed w-8 h-8 border border-[#CCFF00] rounded-full pointer-events-none z-[999] opacity-0 transition-opacity duration-300 flex items-center justify-center">
-        <div class="w-1 h-1 bg-[#CCFF00] rounded-full"></div>
-    </div>
 
     <script>
         // 1. RIFERIMENTI ELEMENTI
-        const cursor = document.getElementById('custom-cursor');
-        const crazySections = document.querySelectorAll('#mad-lab, #work');
-        const image = document.getElementById('hero-image');
+        const heroVideo = document.getElementById('hero-video');
         const musicBtn = document.getElementById('music-btn');
         const musicBtnMobile = document.getElementById('music-btn-mobile');
         const audio = document.getElementById('bg-music');
@@ -760,25 +770,15 @@
             }
         });
 
-        // 3. GESTIONE CURSORE E PARALLASSE (Unificata per performance)
+        // 3. GESTIONE PARALLASSE
         document.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
-
-            // Movimento Cursore
-            cursor.style.left = clientX - 16 + 'px';
-            cursor.style.top = clientY - 16 + 'px';
 
             // Effetto Parallasse Hero
             const moveX = (clientX - window.innerWidth / 2) * 0.012;
             const moveY = (clientY - window.innerHeight / 2) * 0.012;
 
-            if (image) image.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
-        });
-
-        // Visibilità cursore nelle sezioni specifiche
-        crazySections.forEach(section => {
-            section.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-            section.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+            if (heroVideo) heroVideo.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
         });
 
         // 4. LOGICA AUDIO: ENTER SCREEN (Con salto al sec 10 e Fade-in)
@@ -790,8 +790,8 @@
             audio.play().then(() => {
                 // Effetto Fade-in: aumenta il volume gradualmente
                 let fadeIn = setInterval(() => {
-                    if (audio.volume < 0.4) {
-                        audio.volume = Math.min(audio.volume + 0.05, 0.4);
+                    if (audio.volume < 0.1) {
+                        audio.volume = Math.min(audio.volume + 0.05, 0.1);
                     } else {
                         clearInterval(fadeIn);
                     }
