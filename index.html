@@ -65,6 +65,16 @@
         }
         .marquee-container:hover { animation-play-state: paused; }
 
+        .marquee-wrapper {
+            touch-action: pan-x;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        .marquee-wrapper.paused-animation .marquee-container {
+            animation-play-state: paused !important;
+        }
+
         .marquee-wrapper::before, .marquee-wrapper::after {
             content: ""; position: absolute; top: 0; width: 150px; height: 100%; z-index: 2; pointer-events: none;
         }
@@ -528,34 +538,34 @@
                 </div>
             </div>
 
-            <div class="marquee-wrapper relative w-full overflow-hidden mb-20">
-                <div class="marquee-container">
+            <div class="marquee-wrapper relative w-full overflow-x-auto overflow-y-hidden no-scrollbar mb-20 snap-x snap-mandatory" id="glitch-feed-wrapper">
+                <div class="marquee-container" id="glitch-feed-container">
                     <div class="flex">
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="orderhub.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="spore.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="orderhub.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="the_art_event.png" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="flex">
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="orderhub.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="spore.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="orderhub.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=500&h=500&fit=crop" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                            <img src="the_art_event.png" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
@@ -898,6 +908,35 @@
         document.querySelectorAll('.animate-section').forEach(section => {
             observer.observe(section);
         });
+
+        // 7. GLITCH FEED - SCROLL MANUALE DA MOBILE
+        const marqueeWrapper = document.getElementById('glitch-feed-wrapper');
+        let interactionTimeout;
+
+        if (marqueeWrapper) {
+            // Quando l'utente tocca il feed, ferma l'animazione
+            marqueeWrapper.addEventListener('touchstart', () => {
+                marqueeWrapper.classList.add('paused-animation');
+                clearTimeout(interactionTimeout);
+            }, { passive: true });
+
+            // Quando l'utente smette di toccare, riparte dopo 5 secondi
+            marqueeWrapper.addEventListener('touchend', () => {
+                interactionTimeout = setTimeout(() => {
+                    marqueeWrapper.classList.remove('paused-animation');
+                }, 5000); // 5 secondi di pausa prima di ripartire
+            }, { passive: true });
+
+            // Anche quando l'utente scrolla (con le dita sul contenuto)
+            marqueeWrapper.addEventListener('scroll', () => {
+                marqueeWrapper.classList.add('paused-animation');
+                clearTimeout(interactionTimeout);
+
+                interactionTimeout = setTimeout(() => {
+                    marqueeWrapper.classList.remove('paused-animation');
+                }, 5000);
+            }, { passive: true });
+        }
     </script>
 </body>
 </html>
