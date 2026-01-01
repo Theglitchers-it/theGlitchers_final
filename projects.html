@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - TheGlitchers | Creative Tech Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d;
+            margin: 0;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+
+        .grainy-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0.05;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+
+        /* Effetto immagini al passaggio del mouse */
+        .project-card:hover img {
+            filter: contrast(1.2) brightness(1.1);
+            transform: scale(1.05);
+        }
+
+        /* Animazioni di entrata */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-section {
+            opacity: 0;
+        }
+
+        .animate-section.fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-section.slide-up {
+            animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .animate-section.in-view {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Grid asimmetrico su desktop */
+        @media (min-width: 768px) {
+            .project-card:nth-child(even) {
+                margin-top: 8rem;
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="no-scrollbar">
+
+    <div class="grainy-bg"></div>
+
+    <header class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit">
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full items-center gap-8">
+            <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
+                <img src="top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
+            </a>
+            <div class="flex gap-6 text-[13px] font-medium text-gray-300">
+                <a href="index.html" class="hover:text-[#CCFF00] transition">Home</a>
+                <a href="projects.html" class="text-[#CCFF00]">Projects</a>
+                <a href="madlab.html" class="hover:text-[#CCFF00] transition">Mad Lab</a>
+                <a href="index.html#instagram" class="hover:text-[#CCFF00] transition">Social</a>
+            </div>
+            <a href="index.html#contact" class="bg-white text-black px-6 py-2 rounded-full text-[13px] font-bold hover:bg-[#CCFF00] hover:scale-105 transition-all">
+                Contact
+            </a>
+        </nav>
+
+        <!-- Mobile Nav -->
+        <nav class="md:hidden bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full flex items-center gap-4">
+            <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
+                <img src="top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
+            </a>
+            <button id="menu-toggle" class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 hover:scale-110 transition-transform">
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line1"></span>
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line2"></span>
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line3"></span>
+            </button>
+        </nav>
+
+        <!-- Menu Mobile -->
+        <div id="dropdown-menu" class="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px]">
+            <div class="p-6">
+                <div class="flex flex-col gap-1">
+                    <a href="index.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Home</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="projects.html" class="group px-4 py-3 rounded-xl bg-white/5">
+                        <span class="text-[#CCFF00] font-medium">Projects</span>
+                    </a>
+                    <a href="madlab.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Mad Lab</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="index.html#instagram" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Social</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="index.html#contact" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Contact</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <a href="index.html#contact" class="block w-full bg-[#CCFF00] text-black px-6 py-3 rounded-full text-center font-bold hover:scale-105 transition-transform">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-20 px-6">
+        <!-- Hero Section -->
+        <div class="max-w-[1400px] mx-auto mb-20 animate-section" data-anim="fade-in">
+            <span class="text-[#CCFF00] font-mono text-xs tracking-[0.5em] uppercase block mb-4">// PORTFOLIO_ARCHIVE_LOADED</span>
+            <h1 class="font-bebas text-7xl md:text-[12rem] leading-[0.8] tracking-tighter">
+                OUR <br> <span class="text-[#CCFF00] italic">PROJECTS</span>
+            </h1>
+            <p class="text-gray-400 mt-6 max-w-2xl text-sm md:text-base">
+                Una raccolta dei nostri lavori più recenti. Design, sviluppo e strategie digitali che fanno la differenza.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+
+            <!-- Project 1 -->
+            <div class="group project-card cursor-pointer animate-section" data-anim="slide-up">
+                <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
+                    <img src="orderhub.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
+
+                    <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Web Design</span>
+                        <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2024</span>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">ORDER_HUB</h3>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">E-Commerce Platform & UI/UX</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="group project-card cursor-pointer animate-section" data-anim="slide-up">
+                <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
+                    <img src="spore.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
+
+                    <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Branding</span>
+                        <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2024</span>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">SPORE_IDENTITY</h3>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Brand Identity & Visual System</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="group project-card cursor-pointer animate-section" data-anim="slide-up">
+                <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
+                    <img src="the_art_event.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
+
+                    <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Event Design</span>
+                        <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2024</span>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">THE_ART_EVENT</h3>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Exhibition & Digital Experience</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="group project-card cursor-pointer animate-section" data-anim="slide-up">
+                <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
+                    <img src="barber.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
+
+                    <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Web Design</span>
+                        <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2025</span>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">BARBER_SHOP</h3>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Retro Digital Experience</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="group project-card cursor-pointer animate-section" data-anim="slide-up">
+                <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
+                    <img src="w3certificator.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
+
+                    <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Web3</span>
+                        <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2025</span>
+                    </div>
+                </div>
+                <div class="mt-8 flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">W3_CERTIFICATOR</h3>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Blockchain Certification System</p>
+                    </div>
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- CTA Section: "Ready to Glitch Your Brand?" -->
+    <section class="relative py-32 px-6 overflow-hidden border-t border-white/5 animate-section" data-anim="fade-in">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#CCFF00]/5 blur-[150px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-[1400px] mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#CCFF00] mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CCFF00] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#CCFF00]"></span>
+                </span>
+                <span class="text-[#CCFF00] font-mono text-[10px] uppercase tracking-tighter">Ready for Launch</span>
+            </div>
+
+            <h2 class="font-bebas text-6xl md:text-[120px] leading-[0.8] tracking-tighter mb-8">
+                READY TO <br> <span class="text-[#CCFF00] italic">GLITCH YOUR BRAND?</span>
+            </h2>
+
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
+                Trasformiamo la tua visione in realtà digitale. Dal design allo sviluppo, creiamo esperienze che lasciano il segno.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <a href="index.html#contact" class="group relative px-10 py-5 bg-[#CCFF00] text-black font-black uppercase tracking-tighter rounded-full overflow-hidden hover:scale-105 transition-transform shadow-[0_0_40px_rgba(204,255,0,0.3)]">
+                    <span class="relative z-10">START A PROJECT</span>
+                </a>
+
+                <a href="madlab.html" class="group relative px-10 py-5 overflow-hidden rounded-full border border-white/20 transition-all hover:border-[#CCFF00]">
+                    <span class="relative z-10 font-bebas text-xl tracking-wider text-white group-hover:text-black transition-colors duration-300">
+                        EXPLORE THE LAB
+                    </span>
+                    <div class="absolute inset-0 bg-[#CCFF00] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-white/5 px-6">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-gray-600 text-[10px] tracking-widest uppercase font-bold">
+                © 2025 THEGLITCHERS — CREATIVE TECH TEAM
+            </p>
+
+            <div class="flex gap-8 items-center">
+                <a href="mailto:careers@theglitchers.com" class="text-gray-500 hover:text-[#CCFF00] text-[10px] tracking-widest uppercase font-bold transition-colors">
+                    Lavora con noi
+                </a>
+                <a href="#" class="text-gray-500 hover:text-white text-[10px] tracking-widest uppercase font-bold transition-colors">
+                    Privacy
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Hamburger Toggle
+        let isMenuOpen = false;
+        const menuToggle = document.getElementById('menu-toggle');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const line1 = document.getElementById('line1');
+        const line2 = document.getElementById('line2');
+        const line3 = document.getElementById('line3');
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+
+            if (isMenuOpen) {
+                dropdownMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.add('opacity-100', 'translate-y-0');
+                line1.style.transform = 'rotate(45deg) translateY(7px)';
+                line2.style.opacity = '0';
+                line3.style.transform = 'rotate(-45deg) translateY(-7px)';
+            } else {
+                dropdownMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.remove('opacity-100', 'translate-y-0');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            }
+        });
+
+        // Chiudi menu quando clicchi su un link
+        const menuLinks = dropdownMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                dropdownMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.remove('opacity-100', 'translate-y-0');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            });
+        });
+
+        // Chiudi menu cliccando fuori
+        document.addEventListener('click', (e) => {
+            if (isMenuOpen && !menuToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                isMenuOpen = false;
+                dropdownMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+                dropdownMenu.classList.remove('opacity-100', 'translate-y-0');
+                line1.style.transform = 'none';
+                line2.style.opacity = '1';
+                line3.style.transform = 'none';
+            }
+        });
+
+        // Intersection Observer per animazioni
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const animType = entry.target.dataset.anim;
+                    entry.target.classList.add(animType);
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Parallax semplice su scroll
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const projectCards = document.querySelectorAll('.project-card');
+
+                    projectCards.forEach((card, index) => {
+                        const speed = index % 2 === 0 ? 0.3 : 0.5;
+                        const yPos = -(scrolled * speed);
+                        card.style.transform = `translateY(${yPos}px)`;
+                    });
+
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -66,13 +66,15 @@
         .marquee-container:hover { animation-play-state: paused; }
 
         .marquee-wrapper {
-            touch-action: pan-x;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
+            touch-action: none;
+            overflow: hidden !important;
+            -webkit-overflow-scrolling: auto;
+            pointer-events: auto;
         }
 
-        .marquee-wrapper.paused-animation .marquee-container {
-            animation-play-state: paused !important;
+        .marquee-container div:hover,
+        .marquee-container div:active {
+            filter: grayscale(0);
         }
 
         .marquee-wrapper::before, .marquee-wrapper::after {
@@ -538,37 +540,46 @@
                 </div>
             </div>
 
-            <div class="marquee-wrapper relative w-full overflow-x-auto overflow-y-hidden no-scrollbar mb-20 snap-x snap-mandatory" id="glitch-feed-wrapper">
+            <div class="marquee-wrapper relative w-full overflow-hidden mb-12" id="glitch-feed-wrapper">
                 <div class="marquee-container" id="glitch-feed-container">
                     <div class="flex">
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
                             <img src="orderhub.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
                             <img src="spore.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
-                            <img src="orderhub.png" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
+                            <img src="barber.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
-                            <img src="the_art_event.png" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
+                            <img src="w3certificator.png" class="w-full h-full object-cover">
                         </div>
                     </div>
                     <div class="flex">
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
                             <img src="orderhub.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
                             <img src="spore.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
-                            <img src="orderhub.png" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
+                            <img src="barber.png" class="w-full h-full object-cover">
                         </div>
-                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-500 cursor-pointer shadow-2xl snap-center">
-                            <img src="the_art_event.png" class="w-full h-full object-cover">
+                        <div class="w-[250px] md:w-[350px] aspect-square mx-4 rounded-[40px] overflow-hidden border border-white/10 grayscale shadow-2xl transition-all duration-300">
+                            <img src="w3certificator.png" class="w-full h-full object-cover">
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="flex justify-center mt-12 mb-20 animate-section" data-anim="fade-in">
+                <a href="projects.html" class="group relative px-12 py-4 overflow-hidden rounded-full border border-white/20 transition-all hover:border-[#CCFF00]">
+                    <span class="relative z-10 font-bebas text-2xl tracking-wider text-white group-hover:text-black transition-colors duration-300">
+                        VIEW ALL PROJECTS
+                    </span>
+                    <div class="absolute inset-0 bg-[#CCFF00] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                </a>
             </div>
 
             <div id="community" class="relative pt-20 flex flex-col items-center text-center px-6">
@@ -908,35 +919,6 @@
         document.querySelectorAll('.animate-section').forEach(section => {
             observer.observe(section);
         });
-
-        // 7. GLITCH FEED - SCROLL MANUALE DA MOBILE
-        const marqueeWrapper = document.getElementById('glitch-feed-wrapper');
-        let interactionTimeout;
-
-        if (marqueeWrapper) {
-            // Quando l'utente tocca il feed, ferma l'animazione
-            marqueeWrapper.addEventListener('touchstart', () => {
-                marqueeWrapper.classList.add('paused-animation');
-                clearTimeout(interactionTimeout);
-            }, { passive: true });
-
-            // Quando l'utente smette di toccare, riparte dopo 5 secondi
-            marqueeWrapper.addEventListener('touchend', () => {
-                interactionTimeout = setTimeout(() => {
-                    marqueeWrapper.classList.remove('paused-animation');
-                }, 5000); // 5 secondi di pausa prima di ripartire
-            }, { passive: true });
-
-            // Anche quando l'utente scrolla (con le dita sul contenuto)
-            marqueeWrapper.addEventListener('scroll', () => {
-                marqueeWrapper.classList.add('paused-animation');
-                clearTimeout(interactionTimeout);
-
-                interactionTimeout = setTimeout(() => {
-                    marqueeWrapper.classList.remove('paused-animation');
-                }, 5000);
-            }, { passive: true });
-        }
     </script>
 </body>
 </html>
