@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join The Glitch | Careers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0d0d0d; 
+            margin: 0;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
+        
+        .grainy-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0.05;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+
+        /* Glitch Effect */
+        .glitch-text:hover {
+            animation: glitch-anim 0.3s linear infinite;
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0); }
+            25% { transform: translate(-2px, 1px); }
+            50% { transform: translate(2px, -1px); }
+            75% { transform: translate(-1px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Animazioni di ingresso */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in { animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+        
+        .card-glitch {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-glitch:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #CCFF00;
+            box-shadow: 0 20px 40px rgba(204, 255, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="no-scrollbar">
+
+    <div class="grainy-bg"></div>
+
+    <header class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit">
+        <nav class="flex bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full items-center gap-8">
+            <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
+                <img src="top.png" alt="Logo" class="w-full h-full object-contain scale-125">
+            </a>
+            <div class="hidden md:flex gap-6 text-[13px] font-medium text-gray-300">
+                <a href="index.html" class="hover:text-[#CCFF00] transition">Home</a>
+                <a href="index.html#work" class="hover:text-[#CCFF00] transition">Work</a>
+                <a href="#" class="text-[#CCFF00]">Careers</a>
+            </div>
+            <a href="mailto:careers@theglitchers.com" class="bg-[#CCFF00] text-black px-6 py-2 rounded-full text-[13px] font-bold hover:scale-105 transition-all">
+                Apply Now
+            </a>
+        </nav>
+    </header>
+
+    <main class="pt-40 pb-20 px-6">
+        <section class="max-w-[1400px] mx-auto text-center mb-32">
+            <div class="animate-in">
+                <span class="text-[#CCFF00] font-mono text-xs tracking-[0.5em] uppercase mb-4 block">// JOIN THE SYSTEM</span>
+                <h1 class="font-bebas text-7xl md:text-[150px] leading-[0.8] tracking-tighter mb-8">
+                    DO YOU <span class="italic text-white">GLITCH?</span>
+                </h1>
+                <p class="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed">
+                    Non cerchiamo dipendenti, ma <span class="text-white font-bold">complici digitali</span>. 
+                    Se il codice è la tua lingua e l'estetica la tua ossessione, sei nel posto giusto.
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+            
+            <div class="card-glitch bg-[#1a1a1a] border border-white/5 rounded-[40px] p-10 md:p-16 flex flex-col justify-between min-h-[500px] overflow-hidden relative group">
+                <div class="absolute top-0 right-0 p-8">
+                    <div class="w-16 h-16 rounded-full border border-[#CCFF00]/20 flex items-center justify-center group-hover:rotate-45 transition-transform">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#CCFF00" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-[#CCFF00] font-mono text-xs uppercase tracking-widest mb-4 block">01. Contribution</span>
+                    <h2 class="font-bebas text-5xl md:text-7xl mb-6">OPEN SOURCE <br> PROJECTS</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8">
+                        Crediamo nel potere della community. Contribuisci ai nostri repo pubblici, migliora i nostri tool e cresci con noi nella frontiera del web sperimentale.
+                    </p>
+                </div>
+                <a href="https://github.com/theglitchers" class="inline-flex items-center gap-4 text-white font-bold hover:text-[#CCFF00] transition-colors">
+                    EXPLORE REPOSITORIES 
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+
+            <div class="card-glitch bg-[#CCFF00] rounded-[40px] p-10 md:p-16 flex flex-col justify-between min-h-[500px] relative overflow-hidden group">
+                <div class="absolute -right-20 -bottom-20 font-bebas text-[300px] text-black/5 pointer-events-none">CORE</div>
+                <div>
+                    <span class="text-black font-mono text-xs uppercase tracking-widest mb-4 block">02. Production</span>
+                    <h2 class="font-bebas text-5xl md:text-7xl text-black mb-6">CORE TEAM <br> & STARTUPS</h2>
+                    <p class="text-black/70 text-lg leading-relaxed mb-8 font-medium">
+                        Unisciti a noi per costruire prodotti da zero. Sviluppiamo startup SaaS innovative, landing page ad alta conversione e software custom che rompono le regole.
+                    </p>
+                </div>
+                <a href="mailto:careers@theglitchers.com" class="inline-flex items-center gap-4 bg-black text-white w-fit px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">
+                    JOIN THE PRODUCTION
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+
+        </section>
+
+        <section class="max-w-[1200px] mx-auto py-20 border-y border-white/5">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div>
+                    <h3 class="font-bebas text-4xl mb-2">SaaS</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-tighter">Architecture</p>
+                </div>
+                <div>
+                    <h3 class="font-bebas text-4xl mb-2">LANDING</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-tighter">High Conversion</p>
+                </div>
+                <div>
+                    <h3 class="font-bebas text-4xl mb-2">WEB3</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-tighter">Ecosystems</p>
+                </div>
+                <div>
+                    <h3 class="font-bebas text-4xl mb-2">UI/UX</h3>
+                    <p class="text-gray-500 text-xs uppercase tracking-tighter">Glitch Aesthetic</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 text-center relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#CCFF00]/10 blur-[120px] rounded-full pointer-events-none"></div>
+            <h2 class="font-bebas text-6xl md:text-9xl tracking-tighter mb-12">
+                SEND YOUR <br> <span class="text-[#CCFF00]">PORTFOLIO.</span>
+            </h2>
+            <a href="mailto:careers@theglitchers.com" class="group relative inline-block px-12 py-6 bg-white text-black font-black uppercase tracking-widest rounded-full overflow-hidden transition-all hover:pr-16">
+                <span class="relative z-10">Apply@theglitchers.com</span>
+                <div class="absolute inset-0 bg-[#CCFF00] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </a>
+        </section>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 px-6">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-gray-600 text-[10px] tracking-widest uppercase font-bold">
+            <p>© 2025 THEGLITCHERS — RECRUITING SYSTEM v1.0</p>
+            <a href="index.html" class="hover:text-white transition-colors">Back to Home</a>
+        </div>
+    </footer>
+
+</body>
+</html>
