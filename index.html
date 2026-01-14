@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,30 @@
     <!-- CSS Files -->
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/index.css">
+
+    <style>
+        /* Ottimizzazione per Lenis Smooth Scroll */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        /* Stato iniziale per le sezioni animate (effetto Lazy) */
+        .animate-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform, opacity;
+        }
+
+        /* Stato quando la sezione entra nel mirino */
+        .animate-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
 </head>
+
 <body class="no-scrollbar">
 
     <div id="enter-screen" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center transition-opacity duration-1000">
@@ -513,5 +536,63 @@
     <!-- JavaScript Files -->
     <script src="assets/js/common.js"></script>
     <script src="assets/js/index.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+<script>
+    // 2. Inizializzazione Smooth Scroll (Lenis)
+    const lenis = new Lenis({
+        duration: 1.2, // Più alto è il numero, più è "burroso" lo scroll
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1.1, // Velocità dello scroll
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // 3. Gestione click sui link (Scroll fluido verso le sezioni)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === "#") return;
+            
+            e.preventDefault();
+            const target = document.querySelector(targetId);
+            
+            if (target) {
+                lenis.scrollTo(target, {
+                    offset: -20, // Margine superiore
+                    duration: 1.5
+                });
+            }
+        });
+    });
+
+    // 4. Intersection Observer (L'effetto "Lazy" di apparizione)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1 // La sezione appare quando è visibile al 10%
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                // Una volta visibile, smettiamo di osservare (opzionale)
+                // observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    // Applichiamo l'osservatore a tutte le sezioni animate
+    document.querySelectorAll('.animate-section').forEach(section => {
+        observer.observe(section);
+    });
+</script>
 </body>
 </html>
