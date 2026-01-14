@@ -6,57 +6,10 @@
     <title>Join The Glitch | Careers</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #0d0d0d; 
-            margin: 0;
-            color: white;
-            overflow-x: hidden;
-        }
-        .font-bebas { font-family: 'Bebas Neue', sans-serif; }
-        
-        .grainy-bg {
-            position: fixed;
-            inset: 0;
-            z-index: 99;
-            pointer-events: none;
-            opacity: 0.05;
-            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-        }
 
-        /* Glitch Effect */
-        .glitch-text:hover {
-            animation: glitch-anim 0.3s linear infinite;
-        }
-        @keyframes glitch-anim {
-            0% { transform: translate(0); }
-            25% { transform: translate(-2px, 1px); }
-            50% { transform: translate(2px, -1px); }
-            75% { transform: translate(-1px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        
-        /* Animazioni di ingresso */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-in { animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-        
-        .card-glitch {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .card-glitch:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: #CCFF00;
-            box-shadow: 0 20px 40px rgba(204, 255, 0, 0.1);
-        }
-    </style>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/team-careers.css">
 </head>
 <body class="no-scrollbar">
 

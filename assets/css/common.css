@@ -1,0 +1,111 @@
+/* ===================================
+   COMMON STYLES - TheGlitchers
+   Stili condivisi da tutte le pagine
+   =================================== */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Body Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0d0d0d;
+    margin: 0;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Font Family */
+.font-bebas {
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+/* Grainy Background Texture */
+.grainy-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+}
+
+/* Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Glitch Effect on Hover */
+.glitch-hover:hover {
+    animation: glitch-anim 0.3s linear infinite;
+}
+
+@keyframes glitch-anim {
+    0% { transform: translate(0); }
+    25% { transform: translate(-2px, 1px); }
+    50% { transform: translate(2px, -1px); }
+    75% { transform: translate(-1px, -2px); }
+    100% { transform: translate(0); }
+}
+
+/* ===================================
+   ANIMATIONS - Fade & Slide Effects
+   =================================== */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide Up */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animate Section Base */
+.animate-section {
+    opacity: 0;
+}
+
+/* Animation Classes */
+.animate-section.in-view {
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-section.slide-up {
+    animation: slideUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-section.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}

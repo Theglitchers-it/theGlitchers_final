@@ -1,0 +1,17 @@
+/* ===================================
+   PROJECTS.HTML & MADLAB.HTML
+   Stili specifici per le gallerie
+   =================================== */
+
+/* Project Card Hover Effects */
+.project-card:hover img {
+    filter: contrast(1.2) brightness(1.1);
+    transform: scale(1.05);
+}
+
+/* Grid Asimmetrico Desktop */
+@media (min-width: 768px) {
+    .project-card:nth-child(even) {
+        margin-top: 8rem;
+    }
+}
