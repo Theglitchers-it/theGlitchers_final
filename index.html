@@ -85,31 +85,23 @@
                         <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Home</span>
                         <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
-                    <a href="#showreel" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
-                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Showreel</span>
+                    <a href="projects.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Projects</span>
                         <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
-                    <a href="#mad-lab" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                    <a href="team.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Team</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="madlab.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
                         <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Mad Lab</span>
-                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#challenges" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
-                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Challenges</span>
-                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#instagram" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
-                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Portfolio</span>
-                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </a>
-                    <a href="#contact" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
-                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Contact</span>
                         <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
                 </div>
 
                 <div class="mt-4 pt-4 border-t border-white/10">
-                    <a href="mailto:ciao@theglitchers.com" class="block w-full bg-[#CCFF00] text-black px-6 py-3 rounded-full text-center font-bold hover:scale-105 transition-transform">
-                        Get in Touch
+                    <a href="#contact" class="block w-full bg-[#CCFF00] text-black px-6 py-3 rounded-full text-center text-[11px] font-black uppercase tracking-wider hover:scale-105 transition-transform">
+                        Contact
                     </a>
                 </div>
             </div>
@@ -519,9 +511,9 @@
     <footer class="py-12 border-t border-white/5 px-6">
             <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
                 <p class="text-gray-600 text-[10px] tracking-widest uppercase font-bold">
-                    © 2025 THEGLITCHERS — CREATIVE TECH TEAM
+                    © <span id="current-year"></span> THEGLITCHERS — CREATIVE TECH TEAM
                 </p>
-                
+
                 <div class="flex gap-8 items-center">
                     <a href="careers.html" class="text-gray-500 hover:text-[#CCFF00] text-[10px] tracking-widest uppercase font-bold transition-colors">
                         Lavora con noi
@@ -534,6 +526,7 @@
     </footer>
 
     <!-- JavaScript Files -->
+    <script src="assets/js/footer.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/index.js"></script>
 

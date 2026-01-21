@@ -16,11 +16,12 @@
     <div class="grainy-bg"></div>
 
     <header class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit">
-        <nav class="flex bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full items-center gap-8">
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full items-center gap-8">
             <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
                 <img src="assets/images/logo/top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
             </a>
-            <div class="hidden md:flex gap-6 text-[11px] uppercase tracking-[0.2em] font-bold">
+            <div class="flex gap-6 text-[11px] uppercase tracking-[0.2em] font-bold">
                 <a href="index.html" class="hover:text-[#CCFF00] transition">Home</a>
                 <a href="projects.html" class="hover:text-[#CCFF00] transition">Projects</a>
                 <a href="team.html" class="hover:text-[#CCFF00] transition">Team</a>
@@ -30,6 +31,48 @@
                 Contact
             </a>
         </nav>
+
+        <!-- Mobile Nav -->
+        <nav class="md:hidden bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full flex items-center gap-4">
+            <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
+                <img src="assets/images/logo/top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
+            </a>
+            <button id="menu-toggle" class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 hover:scale-110 transition-transform">
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line1"></span>
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line2"></span>
+                <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line3"></span>
+            </button>
+        </nav>
+
+        <!-- Menu Mobile -->
+        <div id="dropdown-menu" class="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px]">
+            <div class="p-6">
+                <div class="flex flex-col gap-1">
+                    <a href="index.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Home</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="projects.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Projects</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="team.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Team</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    <a href="madlab.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Mad Lab</span>
+                        <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-white/10">
+                    <a href="index.html#contact" class="block w-full bg-[#CCFF00] text-black px-6 py-3 rounded-full text-center text-[11px] font-black uppercase tracking-wider hover:scale-105 transition-transform">
+                        Contact
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main class="pt-40 pb-20 px-6">
@@ -121,10 +164,13 @@
 
     <footer class="py-12 border-t border-white/5 px-6">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-gray-600 text-[10px] tracking-widest uppercase font-bold">
-            <p>© 2025 THEGLITCHERS — RECRUITING SYSTEM v1.0</p>
+            <p>© <span id="current-year"></span> THEGLITCHERS — RECRUITING SYSTEM v1.0</p>
             <a href="index.html" class="hover:text-white transition-colors">Back to Home</a>
         </div>
     </footer>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/footer.js"></script>
 
 </body>
 </html>
