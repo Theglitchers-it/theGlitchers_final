@@ -18,6 +18,30 @@ const enterScreen = document.getElementById('enter-screen');
 const startTrigger = document.getElementById('start-trigger');
 
 // ===================================
+// AUTO-SKIP ENTER SCREEN
+// ===================================
+// Controlla se l'utente ha già visto l'ENTER screen in questa sessione
+// oppure se arriva da un'altra pagina del sito
+const hasSeenEnter = sessionStorage.getItem('hasSeenEnter');
+const referrer = document.referrer;
+const isFromSameSite = referrer && (
+    referrer.includes('projects.html') ||
+    referrer.includes('team.html') ||
+    referrer.includes('madlab.html') ||
+    referrer.includes('careers.html')
+);
+
+if (hasSeenEnter || isFromSameSite) {
+    // Salta l'animazione ENTER
+    enterScreen.style.display = 'none';
+
+    // Attiva subito le animazioni hero
+    document.querySelector('.hero-left')?.classList.add('active');
+    document.querySelector('.hero-right')?.classList.add('active');
+    document.querySelector('.hero-center')?.classList.add('active');
+}
+
+// ===================================
 // GESTIONE PARALLASSE MOUSE (Hero Video)
 // ===================================
 document.addEventListener('mousemove', (e) => {
@@ -36,6 +60,9 @@ document.addEventListener('mousemove', (e) => {
 // LOGICA AUDIO: ENTER SCREEN
 // ===================================
 startTrigger.addEventListener('click', () => {
+    // Salva in sessionStorage che l'utente ha visto l'ENTER screen
+    sessionStorage.setItem('hasSeenEnter', 'true');
+
     // Imposta il tempo di inizio al secondo 18
     audio.currentTime = 18;
     audio.volume = 0; // Parte muto per il fade-in
