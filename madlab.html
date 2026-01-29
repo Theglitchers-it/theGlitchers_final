@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mad Lab - TheGlitchers | Experimental Projects</title>
+    <!-- Titolo della pagina Mad Lab - Progetti Sperimentali di TheGlitchers -->
+    <title>Mad Lab - TheGlitchers | Progetti Sperimentali</title>
+    <!-- Importazione di TailwindCSS per lo styling utility-first -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Google: Bebas Neue per i titoli, Inter per il testo -->
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <!-- CSS Files -->
+    <!-- ============================================
+         FILE CSS PERSONALIZZATI
+         - common.css: stili condivisi su tutto il sito
+         - projects.css: stili specifici per le pagine progetti
+    ============================================ -->
     <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/projects.css">
 
     <style>
-        /* Ottimizzazione per Lenis Smooth Scroll */
+        /* ============================================
+           OTTIMIZZAZIONE LENIS SMOOTH SCROLL
+           Lenis è una libreria per lo scroll fluido.
+           Queste regole CSS assicurano che funzioni correttamente.
+        ============================================ */
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         .lenis.lenis-stopped { overflow: hidden; }
 
-        /* Stato iniziale per le sezioni animate (effetto Lazy) */
+        /* ============================================
+           ANIMAZIONI DI APPARIZIONE (LAZY LOADING EFFECT)
+           Le sezioni con classe .animate-section partono
+           nascoste e traslate verso il basso, poi appaiono
+           con una transizione fluida quando entrano nel viewport.
+        ============================================ */
+
+        /* Stato iniziale: nascosto e spostato in basso di 50px */
         .animate-section {
             opacity: 0;
             transform: translateY(50px);
@@ -26,7 +44,7 @@
             will-change: transform, opacity;
         }
 
-        /* Stato quando la sezione entra nel mirino */
+        /* Stato finale: visibile e in posizione normale */
         .animate-section.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -35,30 +53,48 @@
 </head>
 <body class="no-scrollbar">
 
+    <!-- ============================================
+         SFONDO CON EFFETTO GRANULOSO
+         Aggiunge texture visiva alla pagina
+    ============================================ -->
     <div class="grainy-bg"></div>
 
+    <!-- ============================================
+         HEADER - NAVIGAZIONE PRINCIPALE
+         Barra di navigazione fissa in alto al centro.
+         Include versione desktop e mobile.
+    ============================================ -->
     <header class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] w-full max-w-fit">
-        <!-- Desktop Nav -->
+
+        <!-- ========== NAVIGAZIONE DESKTOP ========== -->
+        <!-- Visibile solo su schermi md e superiori (768px+) -->
         <nav class="hidden md:flex bg-black/40 backdrop-blur-xl border border-white/10 px-6 py-2 rounded-full items-center gap-8">
+            <!-- Logo TheGlitchers - Link alla homepage -->
             <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
-                <img src="assets/images/logo/top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
+                <img src="assets/images/logo/top.png" alt="Logo TheGlitchers" class="w-full h-full object-contain scale-125">
             </a>
+            <!-- Menu di navigazione principale -->
             <div class="flex gap-6 text-[11px] uppercase tracking-[0.2em] font-bold">
                 <a href="index.html" class="hover:text-[#CCFF00] transition">Home</a>
-                <a href="projects.html" class="hover:text-[#CCFF00] transition">Projects</a>
+                <a href="projects.html" class="hover:text-[#CCFF00] transition">Progetti</a>
                 <a href="team.html" class="hover:text-[#CCFF00] transition">Team</a>
+                <!-- Link attivo evidenziato in giallo lime -->
                 <a href="madlab.html" class="text-[#CCFF00]">Mad Lab</a>
             </div>
+            <!-- Pulsante CTA per contatti -->
             <a href="index.html#contact" class="bg-[#CCFF00] text-black px-5 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider">
-                Contact
+                Contatti
             </a>
         </nav>
 
-        <!-- Mobile Nav -->
+        <!-- ========== NAVIGAZIONE MOBILE ========== -->
+        <!-- Visibile solo su schermi piccoli (sotto 768px) -->
         <nav class="md:hidden bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-2 rounded-full flex items-center gap-4">
+            <!-- Logo -->
             <a href="index.html" class="w-10 h-10 rounded-full overflow-hidden p-1 flex items-center justify-center">
-                <img src="assets/images/logo/top.png" alt="TheGlitchers Logo" class="w-full h-full object-contain scale-125">
+                <img src="assets/images/logo/top.png" alt="Logo TheGlitchers" class="w-full h-full object-contain scale-125">
             </a>
+            <!-- Pulsante hamburger menu - Le tre linee animate -->
             <button id="menu-toggle" class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 hover:scale-110 transition-transform">
                 <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line1"></span>
                 <span class="w-5 h-0.5 bg-[#CCFF00] transition-all duration-300" id="line2"></span>
@@ -66,16 +102,18 @@
             </button>
         </nav>
 
-        <!-- Menu Mobile -->
+        <!-- ========== MENU DROPDOWN MOBILE ========== -->
+        <!-- Appare quando si clicca l'hamburger menu -->
         <div id="dropdown-menu" class="md:hidden absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[280px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden opacity-0 pointer-events-none transition-all duration-300 translate-y-[-10px]">
             <div class="p-6">
+                <!-- Link del menu mobile -->
                 <div class="flex flex-col gap-1">
                     <a href="index.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
                         <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Home</span>
                         <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
                     <a href="projects.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
-                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Projects</span>
+                        <span class="text-gray-300 group-hover:text-[#CCFF00] font-medium transition-colors">Progetti</span>
                         <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-[#CCFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </a>
                     <a href="team.html" class="group px-4 py-3 rounded-xl hover:bg-white/5 transition-all flex items-center justify-between">
@@ -88,77 +126,100 @@
                     </a>
                 </div>
 
+                <!-- Pulsante contatti nel menu mobile -->
                 <div class="mt-4 pt-4 border-t border-white/10">
                     <a href="index.html#contact" class="block w-full bg-[#CCFF00] text-black px-6 py-3 rounded-full text-center text-[11px] font-black uppercase tracking-wider hover:scale-105 transition-transform">
-                        Contact
+                        Contatti
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- ============================================
+         CONTENUTO PRINCIPALE - MAIN
+    ============================================ -->
     <main class="pt-32 pb-20 px-6">
-        <!-- Hero Section -->
+
+        <!-- ========== SEZIONE HERO ========== -->
+        <!-- Intestazione principale della pagina Mad Lab -->
         <div class="max-w-[1400px] mx-auto mb-20 animate-section" data-anim="fade-in">
-            <span class="text-[#CCFF00] font-mono text-xs tracking-[0.5em] uppercase block mb-4">// EXPERIMENTAL_LAB_ACCESS</span>
+            <!-- Tag identificativo in stile codice -->
+            <span class="text-[#CCFF00] font-mono text-xs tracking-[0.5em] uppercase block mb-4">// ACCESSO_LABORATORIO_SPERIMENTALE</span>
+            <!-- Titolo principale grande -->
             <h1 class="font-bebas text-7xl md:text-[12rem] leading-[0.8] tracking-tighter">
                 MAD <br> <span class="text-[#CCFF00] italic">LAB</span>
             </h1>
+            <!-- Descrizione del Mad Lab -->
             <p class="text-gray-400 mt-6 max-w-2xl text-sm md:text-base">
                 Il nostro laboratorio di sperimentazione digitale. Qui ospitiamo i progetti più folli, le idee più pazze e gli esperimenti senza limiti. Benvenuti nel caos creativo.
             </p>
 
-            <!-- Navigation Button -->
+            <!-- Pulsante per tornare ai progetti normali -->
             <div class="mt-12">
                 <a href="projects.html" class="group relative inline-block px-10 py-5 overflow-hidden rounded-full border border-white/20 transition-all hover:border-[#CCFF00]">
                     <span class="relative z-10 font-bebas text-xl tracking-wider text-white group-hover:text-black transition-colors duration-300">
-                        VIEW NORMAL PROJECTS
+                        VEDI PROGETTI NORMALI
                     </span>
+                    <!-- Effetto riempimento al hover -->
                     <div class="absolute inset-0 bg-[#CCFF00] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                 </a>
             </div>
         </div>
 
-        <!-- Projects Grid -->
+        <!-- ============================================
+             GRIGLIA PROGETTI SPERIMENTALI
+             Layout a 2 colonne su desktop, 1 su mobile.
+             Ogni progetto è una card cliccabile con immagine,
+             tag, titolo e descrizione.
+        ============================================ -->
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
 
-            <!-- Project 1 -->
+            <!-- ========== PROGETTO 1: DIGITAL GRAFFITI WALL ========== -->
+            <!-- Arte interattiva - Muro di graffiti digitali -->
             <a href="#" class="group project-card cursor-pointer animate-section block" data-anim="slide-up">
+                <!-- Container immagine con effetto hover -->
                 <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
+                    <!-- Immagine del progetto - scala di grigi che diventa colorata al hover -->
                     <img src="assets/images/madlab/graffiti.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
+                    <!-- Overlay scuro che scompare al hover -->
                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
 
+                    <!-- Tag categoria e anno -->
                     <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
-                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Interactive Art</span>
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Arte Interattiva</span>
                         <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2025</span>
                     </div>
                 </div>
+                <!-- Informazioni progetto -->
                 <div class="mt-8 flex justify-between items-start">
                     <div>
                         <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">DIGITAL_GRAFFITI_WALL</h3>
-                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Virtual Street Art Canvas</p>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Tela Virtuale per Street Art</p>
                     </div>
+                    <!-- Icona freccia -->
                     <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
                     </div>
                 </div>
             </a>
 
-            <!-- Project 2 -->
+            <!-- ========== PROGETTO 2: PIXEL ART ANIMATOR ========== -->
+            <!-- Strumento per creare animazioni pixel art -->
             <a href="https://theglitchers-it.github.io/Pixel_art_animator/" target="_blank" class="group project-card cursor-pointer animate-section block" data-anim="slide-up">
                 <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
                     <img src="assets/images/madlab/pixel-art-generator.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
 
                     <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
-                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Retro Tools</span>
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Strumenti Retro</span>
                         <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2025</span>
                     </div>
                 </div>
                 <div class="mt-8 flex justify-between items-start">
                     <div>
                         <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">PIXEL_ART_ANIMATOR</h3>
-                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Retro Animation Studio</p>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Studio di Animazione Retro</p>
                     </div>
                     <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -166,21 +227,22 @@
                 </div>
             </a>
 
-            <!-- Project 3 -->
+            <!-- ========== PROGETTO 3: PLATFORM GAME ========== -->
+            <!-- Videogioco platform 2D in stile retro -->
             <a href="https://theglitchers-it.github.io/2d_tier_Platform_open_source/" target="_blank" class="group project-card cursor-pointer animate-section block" data-anim="slide-up">
                 <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
                     <img src="assets/images/madlab/platforme-game.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-0 transition-opacity"></div>
 
                     <div class="absolute top-6 left-6 flex gap-2 flex-wrap">
-                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Game Dev</span>
+                        <span class="bg-black/80 backdrop-blur-md text-[#CCFF00] text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">Sviluppo Giochi</span>
                         <span class="bg-black/80 backdrop-blur-md text-white text-[10px] px-3 py-1 rounded-full border border-white/10 font-bold uppercase">2024</span>
                     </div>
                 </div>
                 <div class="mt-8 flex justify-between items-start">
                     <div>
                         <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">PLATFORM_GAME</h3>
-                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Retro Platform Videogame</p>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Videogioco Platform Retro</p>
                     </div>
                     <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -188,7 +250,8 @@
                 </div>
             </a>
 
-            <!-- Project 4 -->
+            <!-- ========== PROGETTO 4: 3D PORTFOLIO WORLD ========== -->
+            <!-- Ambiente 3D interattivo con WebGL -->
             <a href="https://theglitchers-it.github.io/3d_city_open_source/" target="_blank" class="group project-card cursor-pointer animate-section block" data-anim="slide-up">
                 <div class="relative overflow-hidden rounded-[40px] aspect-[3/3.5] bg-zinc-900 border border-white/10 group-hover:border-[#CCFF00]/50 transition-all duration-500">
                     <img src="assets/images/madlab/3d-game.png" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700">
@@ -202,7 +265,7 @@
                 <div class="mt-8 flex justify-between items-start">
                     <div>
                         <h3 class="font-bebas text-4xl md:text-5xl group-hover:text-[#CCFF00] transition-colors">3D_PORTFOLIO_WORLD</h3>
-                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Interactive 3D Environment</p>
+                        <p class="text-gray-500 font-mono text-xs uppercase tracking-widest mt-2">Ambiente 3D Interattivo</p>
                     </div>
                     <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-[#CCFF00] group-hover:text-black transition-all flex-shrink-0">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
@@ -213,35 +276,46 @@
         </div>
     </main>
 
-    <!-- CTA Section -->
+    <!-- ============================================
+         SEZIONE CTA (CALL TO ACTION)
+         Invito a proporre idee folli per il Mad Lab
+    ============================================ -->
     <section class="relative py-32 px-6 overflow-hidden border-t border-white/5 animate-section" data-anim="fade-in">
+        <!-- Effetto glow sfumato di sfondo -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#CCFF00]/5 blur-[150px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-[1400px] mx-auto text-center relative z-10">
+            <!-- Badge "Modalità Sperimentale" con indicatore animato -->
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#CCFF00] mb-8">
                 <span class="relative flex h-2 w-2">
+                    <!-- Effetto ping animato -->
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CCFF00] opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-[#CCFF00]"></span>
                 </span>
-                <span class="text-[#CCFF00] font-mono text-[10px] uppercase tracking-tighter">Experimental Mode ON</span>
+                <span class="text-[#CCFF00] font-mono text-[10px] uppercase tracking-tighter">Modalità Sperimentale ATTIVA</span>
             </div>
 
+            <!-- Titolo CTA grande -->
             <h2 class="font-bebas text-6xl md:text-[120px] leading-[0.8] tracking-tighter mb-8">
-                GOT A <br> <span class="text-[#CCFF00] italic">CRAZY IDEA?</span>
+                HAI UN'IDEA <br> <span class="text-[#CCFF00] italic">FOLLE?</span>
             </h2>
 
+            <!-- Testo di accompagnamento -->
             <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
                 Se hai un'idea troppo folle per i progetti tradizionali, il Mad Lab è il posto giusto. Niente limiti, solo pura creatività.
             </p>
 
+            <!-- Pulsanti CTA -->
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <!-- Pulsante primario - Contattaci -->
                 <a href="index.html#contact" class="group relative px-10 py-5 bg-[#CCFF00] text-black font-black uppercase tracking-tighter rounded-full overflow-hidden hover:scale-105 transition-transform shadow-[0_0_40px_rgba(204,255,0,0.3)]">
-                    <span class="relative z-10">LET'S GO CRAZY</span>
+                    <span class="relative z-10">DIVENTIAMO PAZZI</span>
                 </a>
 
+                <!-- Pulsante secondario - Vedi progetti normali -->
                 <a href="projects.html" class="group relative px-10 py-5 overflow-hidden rounded-full border border-white/20 transition-all hover:border-[#CCFF00]">
                     <span class="relative z-10 font-bebas text-xl tracking-wider text-white group-hover:text-black transition-colors duration-300">
-                        VIEW NORMAL PROJECTS
+                        VEDI PROGETTI NORMALI
                     </span>
                     <div class="absolute inset-0 bg-[#CCFF00] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                 </a>
@@ -249,12 +323,18 @@
         </div>
     </section>
 
+    <!-- ============================================
+         FOOTER
+         Piè di pagina con copyright e link utili
+    ============================================ -->
     <footer class="py-12 border-t border-white/5 px-6">
         <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <!-- Copyright -->
             <p class="text-gray-600 text-[10px] tracking-widest uppercase font-bold">
                 © <span id="current-year"></span> THEGLITCHERS — CREATIVE TECH TEAM
             </p>
 
+            <!-- Link footer -->
             <div class="flex gap-8 items-center">
                 <a href="careers.html" class="text-gray-500 hover:text-[#CCFF00] text-[10px] tracking-widest uppercase font-bold transition-colors">
                     Lavora con noi
@@ -266,51 +346,71 @@
         </div>
     </footer>
 
-    <!-- JavaScript Files -->
+    <!-- ============================================
+         FILE JAVASCRIPT
+         - footer.js: gestisce l'anno corrente nel copyright
+         - common.js: funzionalità condivise (menu mobile, ecc.)
+         - parallax.js: effetti parallax sugli elementi
+    ============================================ -->
     <script src="assets/js/footer.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/parallax.js"></script>
 
+    <!-- Libreria Lenis per smooth scroll -->
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
 <script>
-    // Inizializzazione Smooth Scroll (Lenis)
+    // ============================================
+    // INIZIALIZZAZIONE SMOOTH SCROLL (LENIS)
+    // Lenis rende lo scroll della pagina più fluido
+    // e piacevole, con effetto di easing personalizzato.
+    // ============================================
     const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        wheelMultiplier: 1.1,
+        duration: 1.2,                                              // Durata dell'animazione di scroll
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // Funzione di easing esponenziale
+        smoothWheel: true,                                          // Abilita smooth scroll con rotella
+        wheelMultiplier: 1.1,                                       // Moltiplicatore velocità rotella
     });
 
+    // Loop di animazione per Lenis
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
-    // Gestione click sui link (Scroll fluido verso le sezioni)
+    // ============================================
+    // GESTIONE LINK INTERNI CON SCROLL FLUIDO
+    // Quando si clicca un link con href che inizia
+    // con "#", lo scroll avviene in modo fluido.
+    // ============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
-            if (targetId === "#") return;
+            if (targetId === "#") return;  // Ignora link vuoti
 
             e.preventDefault();
             const target = document.querySelector(targetId);
 
             if (target) {
                 lenis.scrollTo(target, {
-                    offset: -20,
-                    duration: 1.5
+                    offset: -20,      // Offset di 20px dall'elemento target
+                    duration: 1.5     // Durata dello scroll
                 });
             }
         });
     });
 
-    // Intersection Observer (L'effetto "Lazy" di apparizione)
+    // ============================================
+    // INTERSECTION OBSERVER - EFFETTO LAZY LOADING
+    // Osserva le sezioni con classe .animate-section
+    // e aggiunge la classe .is-visible quando entrano
+    // nel viewport, attivando l'animazione di apparizione.
+    // ============================================
     const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+        root: null,           // Usa il viewport come root
+        rootMargin: '0px',    // Nessun margine aggiuntivo
+        threshold: 0.1        // Attiva quando il 10% è visibile
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -321,7 +421,7 @@
         });
     }, observerOptions);
 
-    // Applichiamo l'osservatore a tutte le sezioni animate
+    // Applica l'observer a tutte le sezioni animate
     document.querySelectorAll('.animate-section').forEach(section => {
         observer.observe(section);
     });
