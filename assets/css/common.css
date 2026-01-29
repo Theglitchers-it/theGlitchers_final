@@ -33,9 +33,13 @@ body {
 }
 
 /* Hide Scrollbar */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
+html,
+body,
 .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
