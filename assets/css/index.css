@@ -28,7 +28,7 @@
 }
 
 .marquee-wrapper {
-    touch-action: none;
+    touch-action: pan-y;
     overflow: hidden !important;
     -webkit-overflow-scrolling: auto;
     pointer-events: auto;
